@@ -1,0 +1,8 @@
+#!/bin/sh
+
+NETBOX_LOGIN_PATH="login"
+if [ -n "$NETBOX_BASE_PATH" ] && [ "$NETBOX_BASE_PATH" != "/" ] ; then
+  NETBOX_LOGIN_PATH="${NETBOX_BASE_PATH#\/}/login"
+fi
+
+wget --spider "http://127.0.0.1/$NETBOX_LOGIN_PATH/"

@@ -1,0 +1,13 @@
+#!/bin/sh
+
+SLEEP_SECONDS=${NETBOX_SERVICE_RESTART_DELAY_SECONDS:=5}
+
+while true ; do
+  echo "[Netbox] WSGI started at $(date)."
+  /opt/netbox/venv/bin/gunicorn --pid /var/tmp/netbox.pid \
+                                --pythonpath /opt/netbox/netbox \
+                                --config /opt/netbox/gunicorn.py \
+                                netbox.wsgi
+  echo "[Netbox] WSGI exited at $(date)."
+  sleep "${SLEEP_SECONDS}s"
+done

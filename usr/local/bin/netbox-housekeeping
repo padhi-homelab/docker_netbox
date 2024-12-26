@@ -1,0 +1,10 @@
+#!/bin/sh
+
+SLEEP_SECONDS=${HOUSEKEEPING_INTERVAL_SECONDS:=86400}
+
+while true ; do
+  echo "[Netbox] Housekeeping started at $(date)."
+  /opt/netbox/venv/bin/python /opt/netbox/netbox/manage.py housekeeping
+  echo "[Netbox] Housekeeping ended at $(date), sleeping for ${SLEEP_SECONDS}s."
+  sleep "${SLEEP_SECONDS}s"
+done

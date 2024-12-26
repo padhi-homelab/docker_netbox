@@ -1,0 +1,10 @@
+#!/bin/sh
+
+SLEEP_SECONDS=${NETBOX_SERVICE_RESTART_DELAY_SECONDS:=5}
+
+while true ; do
+  echo "[Netbox] RQ worker started at $(date)."
+  /opt/netbox/venv/bin/python3 /opt/netbox/netbox/manage.py rqworker high default low
+  echo "[Netbox] RQ worker exited at $(date)."
+  sleep "${SLEEP_SECONDS}s"
+done

@@ -1,8 +1,8 @@
-ARG NETBOX_VERSION=4.2.3
-ARG NETBOX_SHA_512=fb18bd14d4e9b6a6195bace84a088cef9fb160b6c3481632e715248738da5d70de67d420879ded013713193e8217af3fab045cb37837c3a36b7970b3fedf060c
+ARG NETBOX_VERSION=4.2.5
+ARG NETBOX_SHA_512=c50baa84e54b365516431bac15413b47de144e111b546cfbbe54664ebf3f12ebd85477aa22b3caf35c9b48e47596e3d4268965a8c21ef29791722392f8977eed
 
 
-FROM alpine:3.21.2 AS build
+FROM alpine:3.21.3 AS build
 
 
 ARG NETBOX_VERSION
@@ -30,7 +30,7 @@ RUN cd /tmp \
  && /opt/netbox/venv/bin/pip install -r /opt/netbox/requirements.txt
 
 
-FROM padhihomelab/alpine-base:3.21.2_0.19.0_0.2
+FROM padhihomelab/alpine-base:3.21.3_0.19.0_0.2
 
 
 ARG NETBOX_VERSION
